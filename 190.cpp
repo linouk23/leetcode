@@ -6,15 +6,17 @@ using namespace std;
 
 class Solution {
 public:
-    uint32_t reverseBits(uint32_t n) {
-        uint32_t result = 0;
+    uint32_t reverseBits(uint32_t num) {
         const int num_of_bits = 32;
+        unsigned int reverse_num = 0;
+        
         for (int index = 0; index < num_of_bits; ++index) {
-            result <<= 1;
-            result |= (n & 1);
-            n >>= 1;
+            if (num & (1 << index)) {
+                reverse_num |= (1 << (num_of_bits - index - 1));
+            }
         }
-        return result;
+        
+        return reverse_num;
     }
 };
 
