@@ -19,7 +19,6 @@ public:
         while (node != nullptr && node->val == value) {
             node = node->next;
         }
-        if (node == nullptr) { return nullptr; }
         return node;
     }
 
