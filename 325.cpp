@@ -16,12 +16,12 @@ public:
         for (int index = 0; index < n; ++index) {
             int number = nums[index];
             sum_so_far += number;
-            if (prefix_sum.count(sum_so_far)) {
-                prefix_sum[sum_so_far] = index;
-            }
             if (prefix_sum.count(sum_so_far - k)) {
                 int cur_distance = index - prefix_sum[sum_so_far - k];
                 result = max(result, cur_distance);
+            }
+            if (!prefix_sum.count(sum_so_far)) {
+                prefix_sum[sum_so_far] = index;
             }
         }
         return result;
