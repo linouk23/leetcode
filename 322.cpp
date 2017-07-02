@@ -4,38 +4,26 @@
 
 using namespace std;
 
-const int N = 1234567;
-const int INF = 1e9;
-
 class Solution {
 private:
-    vector<int> dp;
-    vector<int> coins;
-    void reset() {
-        dp.clear();
-        dp.resize(N, 0);
-        coins.clear();
+    unordered_map<int, int> dp;
+    vector<int> coins_;
+    int f(int n) {
+        if (n == 0) { return   0; }
+        if (n <  0) { return 1e9; }
+        if (dp.count(n)) { return dp[n]; }
+        int result = 1e9;
+        for (int coin : coins_) {
+            result = min(result, f(n - coin) + 1);
+        }
+        dp[n] = result;
+        return dp[n];
     }
 public:
-    int helper(int amount) {
-        if (amount < 0) { return INF; }
-        if (amount == 0) { return 0; }
-        if (dp[amount]) { return dp[amount]; }
-
-        int answer = INF;
-        for (int coin : coins) {
-            answer = min(answer, helper(amount - coin) + 1);
-        }
-
-        dp[amount] = answer;
-        return dp[amount];
-    }
-
     int coinChange(vector<int>& coins, int amount) {
-        reset();
-        this->coins = coins;
-        int answer = helper(amount);
-        return answer == INF ? -1 : answer;
+        coins_ = coins;
+        int result = f(amount);
+        return result == 1e9 ? -1 : result;
     }
 };
 
