@@ -15,6 +15,7 @@ struct TreeNode {
 };
 
 // Phil Jackson rec: node -> triangle: |> -> return node
+// node->left = f(node->left, ...) -> instead of passing (parent, cur)
 class Solution {
 private:
     // max value node
