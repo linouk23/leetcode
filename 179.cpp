@@ -15,6 +15,7 @@ public:
         sort(str_nums.begin(), str_nums.end(), []
              (const string &s1, const string &s2) { return s1 + s2 > s2 + s1; });
         string result;
+        // Trick.
         result = accumulate(str_nums.begin(), str_nums.end(), string(""));
         reverse(result.begin(), result.end());
         while (result.back() == '0' && !result.empty()) {
