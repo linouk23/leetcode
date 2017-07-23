@@ -27,6 +27,14 @@ private:
 public:
     string encode(string s) {
         size_t n = s.length();
+        // Let dp[i][j] be the answer for the s[i][j]
+        // dp[i][j] = min_len(dp[i][j],
+        //                    dp[i][k] + dp[k + 1][j])
+        // Either represent s[i][j] as a pattern
+        // or divide s[i][k] + s[k + 1][j] and 
+        // take the answers for these segments:
+        // dp[i][k] + dp[k + 1][j]
+        // "2[2[abbb]c]" <- "abbbabbbcabbbabbbc"
         vector<vector<string>> dp(n, vector<string> (n, string(n, ' ')));
         for (size_t len = 1; len <= n; ++len) {
             for (size_t L = 0; L < n; ++L) {
