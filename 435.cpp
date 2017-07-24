@@ -12,6 +12,10 @@ struct Interval {
     Interval(int s, int e) : start(s), end(e) {}
 };
 
+// Trick: Actually, the problem is the same as "Given a collection of intervals,
+// find the maximum number of intervals that are non-overlapping." (the classic
+// Greedy problem: Interval Scheduling). With the solution to that problem, guess
+// how do we get the minimum number of intervals to remove?
 class Solution {
 public:
     int eraseOverlapIntervals(vector<Interval>& intervals) {
