@@ -43,26 +43,18 @@ private:
     void addBorders(vector<vector<int>>& heights) {
         n = (int)heights.size();
         m = (int)heights.front().size();
-        for (int row = 1; row < n - 1; ++row) {
+        for (int row = 0; row < n; ++row) {
             Cell cell = {row, 0, heights[row][0]};
             min_heap.push(cell); visited.insert(cell);
             cell = {row, m - 1, heights[row][m - 1]};
             min_heap.push(cell); visited.insert(cell);
         }
-        for (int col = 1; col < m - 1; ++col) {
+        for (int col = 0; col < m; ++col) {
             Cell cell = {0, col, heights[0][col]};
             min_heap.push(cell); visited.insert(cell);
             cell = {n - 1, col, heights[n - 1][col]};
             min_heap.push(cell); visited.insert(cell);
         }
-        Cell cell = {0, 0, heights[0][0]};
-        min_heap.push(cell); visited.insert(cell);
-        cell = {0, m - 1, heights[0][m - 1]};
-        min_heap.push(cell); visited.insert(cell);
-        cell = {n - 1, 0, heights[n - 1][0]};
-        min_heap.push(cell); visited.insert(cell);
-        cell = {n - 1, m - 1, heights[n - 1][m - 1]};
-        min_heap.push(cell); visited.insert(cell);
     }
     void add_neighbours(const Cell &cell, vector<vector<int>>& heights, int &result, int max_so_far) {
         auto is_valid = [this](const Cell &cell) -> bool {
