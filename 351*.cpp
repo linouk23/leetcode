@@ -21,7 +21,7 @@ private:
     // from - to -> middle_element
     // (the one that should be visited already)
     unordered_map<int, unordered_map<int, int>> jump;
-    int helper(vector<bool> visited, int cur_digit, int count) {
+    int helper(deque<bool> visited, int cur_digit, int count) {
         visited[cur_digit] = true;
         int result = 0;
         if (count > n) { return 0; }
@@ -51,7 +51,7 @@ public:
         jump[4][6] = jump[6][4] = 5;
         
         int result = 0;
-        vector<bool> visited(NUM_OF_DIGITS + 1, false);
+        deque<bool> visited(NUM_OF_DIGITS + 1, false);
         visited[0] = true;
         // The optimization idea is that 1,3,7,9 are symmetric, 
         // 2,4,6,8 are also symmetric. Hence we only calculate one among each group 

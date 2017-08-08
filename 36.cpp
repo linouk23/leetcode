@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
-        vector<vector<bool> > row(9, vector<bool> (9, false)), col, box;
+        vector<deque<bool> > row(9, deque<bool> (9, false)), col, box;
         box = col = row;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {

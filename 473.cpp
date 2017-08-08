@@ -13,7 +13,7 @@ class Solution {
 private:
     int n;
     int NUM_OF_SUMS = 4;
-    bool call_next(int sum_idx, vector<int>& nums, vector<bool> &used, vector<int> &sums, int target) {
+    bool call_next(int sum_idx, vector<int>& nums, deque<bool> &used, vector<int> &sums, int target) {
         if (sums[sum_idx] == target) {
             return dfs(sum_idx + 1, nums, used, sums, target);
         } else {
@@ -21,7 +21,7 @@ private:
         }
     }
     
-    bool dfs(int sum_idx, vector<int>& nums, vector<bool> used, vector<int> sums, int target) {
+    bool dfs(int sum_idx, vector<int>& nums, deque<bool> used, vector<int> sums, int target) {
         if (sum_idx == NUM_OF_SUMS) {
             return true;
         }
@@ -45,7 +45,7 @@ public:
     bool makesquare(vector<int> nums) {
         if (nums.empty()) { return false; }
         n = (int)nums.size();
-        vector<bool> used(n, false);
+        deque<bool> used(n, false);
         vector<int> sums(4, 0);
         // Trick.
         sort(nums.rbegin(), nums.rend());

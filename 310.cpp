@@ -22,7 +22,7 @@ public:
         }
         
         queue<int> q;
-        vector<bool> visited(n, false);
+        deque<bool> visited(n, false);
         vector<int> prev(n, -1), dist(n, 0);
         int start = 0;
         visited[start] = true;

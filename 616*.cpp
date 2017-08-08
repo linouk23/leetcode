@@ -10,7 +10,7 @@ public:
     string addBoldTag(string s, vector<string> dict) {
         string result = "";
         int n = (int)s.length();
-        vector<bool> isBold(n);
+        deque<bool> isBold(n);
         int lastBold = -1;
         for (int idx = 0; idx < n; ++idx){
             for (const string &word : dict){

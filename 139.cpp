@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        vector<bool> dp(s.length() + 1, false);
+        deque<bool> dp(s.length() + 1, false);
         unordered_set<string> hashset(wordDict.begin(), wordDict.end());
         dp[0] = true;
         for (int start = 1; start <= s.length(); ++start) {

@@ -12,7 +12,7 @@ public:
         int sum = accumulate(nums.begin(), nums.end(), 0);
         if (sum % 2) { return false; }
         int target = sum / 2;
-        vector<vector<bool>> dp(sum / 2 + 1, vector<bool>(n + 1, false));
+        vector<deque<bool>> dp(sum / 2 + 1, deque<bool>(n + 1, false));
         // Let dp[x][k] = true if we can construct a sum x
         // using the first k weights,
         // and otherwise dp[x][k] = false.

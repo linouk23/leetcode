@@ -10,7 +10,7 @@ public:
     bool isMatch(string f, string s) {
         int n = (int)f.length();
         int m = (int)s.length();
-        vector<vector<bool>> dp(n + 1, vector<bool> (m + 1, false));
+        vector<deque<bool>> dp(n + 1, deque<bool> (m + 1, false));
         // "" matches ""
         dp[0][0] = true;
         // "" matches "a*b*c*"

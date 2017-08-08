@@ -8,7 +8,7 @@ class Solution {
 private:
     set<vector<string> > result_set;
 public:
-    void helper(string& s, unordered_set<string>& hashset, vector<bool>& dp, int index, vector<string> cur) {
+    void helper(string& s, unordered_set<string>& hashset, deque<bool>& dp, int index, vector<string> cur) {
         if (index < 0) {
             return;
         }
@@ -29,7 +29,7 @@ public:
     }
     
     vector<string> wordBreak(string s, vector<string>& wordDict) {
-        vector<bool> dp(s.length() + 1, false);
+        deque<bool> dp(s.length() + 1, false);
         unordered_set<string> hashset(wordDict.begin(), wordDict.end());
         dp[0] = true;
         for (int start = 1; start <= s.length(); ++start) {

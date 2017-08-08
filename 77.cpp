@@ -8,7 +8,7 @@ class Solution {
 private:
     vector<vector<int> > result;
     int n_, k_;
-    void helper(vector<int> comb, vector<bool> used, int last_used_num) {
+    void helper(vector<int> comb, deque<bool> used, int last_used_num) {
         if ((int)comb.size() == k_) {
             result.emplace_back(comb);
             return;
@@ -29,7 +29,7 @@ public:
     vector<vector<int>> combine(int n, int k) {
         n_ = n;
         k_ = k;
-        vector<bool> used(n + 1, false);
+        deque<bool> used(n + 1, false);
         helper({}, used, 0);
         return result;
     }

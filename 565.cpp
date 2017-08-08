@@ -18,7 +18,7 @@ using namespace std;
 
 class Solution {
 private:
-    vector<bool> visited;
+    deque<bool> visited;
     vector<int> comp;
     int result;
     vector<int> f(int x, vector<int>& nums) {

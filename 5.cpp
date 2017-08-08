@@ -5,11 +5,11 @@
 using namespace std;
 
 class Solution {
-    vector<vector<bool> > dp;
+    vector<deque<bool> > dp;
 public:
     string longestPalindrome(string str) {
         int n = (int)str.length();
-        dp.resize(n, vector<bool> (n, true));
+        dp.resize(n, deque<bool> (n, true));
         // L == R -> true
         // L == R + 1 -> true
         

@@ -9,7 +9,7 @@ const int INF = (int)1e9;
 class Solution {
 private:
     vector<vector<int>  > value;
-    vector<vector<bool> > ready;
+    vector<deque<bool> > ready;
     
     int n, m;
     string str1, str2;
@@ -38,7 +38,7 @@ public:
         n = (int)word1.length();
         m = (int)word2.length();
         value.resize(n + 1, vector<int>  (m + 1, INF));
-        ready.resize(n + 1, vector<bool> (m + 1, false));
+        ready.resize(n + 1, deque<bool> (m + 1, false));
         return lazyDP(n, m);
     }
 };

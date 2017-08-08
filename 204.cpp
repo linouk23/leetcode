@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 public:
     int countPrimes(int n) {
-        vector<bool> sieve(n + 1, true);
+        deque<bool> sieve(n + 1, true);
         sieve[0] = sieve[1] = false;
         
         for (long long num = 2; num * num <= (long long)n; ++num) {

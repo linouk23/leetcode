@@ -12,7 +12,7 @@ public:
         vector<string> result;
         for (const auto &word : hashset) {
             int n = (int)word.length();
-            vector<bool> dp(n + 1, false);
+            deque<bool> dp(n + 1, false);
             dp[0] = true;
             for (int start = 0; start < n; ++start) {
                 if (dp[start] == false) { continue; }

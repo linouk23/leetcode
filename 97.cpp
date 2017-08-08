@@ -119,7 +119,7 @@ public:
         }
         int n = (int)s1.length();
         int m = (int)s2.length();
-        vector<vector<bool> > dp(n + 1, vector<bool> (m + 1, false));
+        vector<deque<bool> > dp(n + 1, deque<bool> (m + 1, false));
         dp[0][0] = true;
         for (int col = 1; col <= m; ++col) {
             dp[0][col] = dp[0][col - 1] && (s3[col - 1] == s2[col - 1]);

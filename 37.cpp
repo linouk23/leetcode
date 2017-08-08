@@ -10,23 +10,23 @@ private:
     int n;
     char dot = '.';
     bool check(vector<vector<char>> &board, int row, int col, int val,
-               vector<vector<bool>> &rows, vector<vector<bool>> &cols,
-               vector<vector<bool>> &cubes) {
+               vector<deque<bool>> &rows, vector<deque<bool>> &cols,
+               vector<deque<bool>> &cubes) {
         int cube_idx = 3 * (row / 3) + col / 3;
         return rows[row][val - 1] || cols[col][val - 1] ||
         cubes[cube_idx][val - 1];
     }
     void set_val(vector<vector<char>> &board, int row, int col, int val,
-                 vector<vector<bool>> &rows, vector<vector<bool>> &cols,
-                vector<vector<bool>> &cubes, bool value_to_set) {
+                 vector<deque<bool>> &rows, vector<deque<bool>> &cols,
+                vector<deque<bool>> &cubes, bool value_to_set) {
         int cube_idx = 3 * (row / 3) + col / 3;
         rows[row][val - 1] = cols[col][val - 1] = value_to_set;
         cubes[cube_idx][val - 1] = value_to_set;
     }
     void call_helper(vector<vector<char>> board, int row, int col,
-                     vector<vector<bool>> rows,
-                     vector<vector<bool>> cols,
-                     vector<vector<bool>> cubes){
+                     vector<deque<bool>> rows,
+                     vector<deque<bool>> cols,
+                     vector<deque<bool>> cubes){
         if (col != n - 1) {
             helper(board, row, col + 1, rows, cols, cubes);
         } else {
@@ -34,9 +34,9 @@ private:
         }
     }
     void helper(vector<vector<char>> board, int row, int col,
-                vector<vector<bool>> rows,
-                vector<vector<bool>> cols,
-                vector<vector<bool>> cubes) {
+                vector<deque<bool>> rows,
+                vector<deque<bool>> cols,
+                vector<deque<bool>> cubes) {
         if (row == n) {
             result = board;
             return;
@@ -67,9 +67,9 @@ public:
         // n = (int)board.size();
         // m = (n > 0) ? (int)board[0].size() : 0;
         n = 9;
-        vector<vector<bool> > rows(n, vector<bool> (n, false));
+        vector<deque<bool> > rows(n, deque<bool> (n, false));
         auto cols = rows;
-        vector<vector<bool> > cubes(n, vector<bool> (n, false));
+        vector<deque<bool> > cubes(n, deque<bool> (n, false));
         
         // Use current configuration.
         for (int row = 0; row < n; ++row) {

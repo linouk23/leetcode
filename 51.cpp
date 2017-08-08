@@ -12,7 +12,7 @@ private:
     char dot = '.';
     vector<vector<string>> result;
     
-    void helper(int cur_row, vector<bool> rows, vector<bool> cols, vector<bool> ldiags, vector<bool> rdiags, vector<string> field) {
+    void helper(int cur_row, deque<bool> rows, deque<bool> cols, deque<bool> ldiags, deque<bool> rdiags, vector<string> field) {
         if (cur_row == n_rows) {
             result.emplace_back(field);
             return;
@@ -34,9 +34,9 @@ private:
 public:
     vector<vector<string>> solveNQueens(int num_of_rows) {
         n_rows = num_of_rows;
-        vector<bool> rows(n_rows, false);
+        deque<bool> rows(n_rows, false);
         auto cols = rows;
-        vector<bool> ldiags(2 * n_rows, false);
+        deque<bool> ldiags(2 * n_rows, false);
         auto rdiags = ldiags;
         vector<string> field(n_rows, string(n_rows, dot));
         helper(0, rows, cols, ldiags, rdiags, field);

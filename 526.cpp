@@ -8,7 +8,7 @@ class Solution {
 private:
     int n;
     int result = 0;
-    void helper(vector<int> permutation, vector<bool> used) {
+    void helper(vector<int> permutation, deque<bool> used) {
         if (permutation.size() == n) {
             ++result;
             return;
@@ -31,7 +31,7 @@ private:
 public:
     int countArrangement(int N) {
         n = N;
-        vector<bool> used(N + 1, false);
+        deque<bool> used(N + 1, false);
         helper({}, used);
         return result;
     }

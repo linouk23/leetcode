@@ -69,7 +69,7 @@ private:
     vector<vector<int> > g;
     int n;
     vector<int> result, color;
-    vector<bool> is_visited;
+    deque<bool> is_visited;
 };
 
 int main() {

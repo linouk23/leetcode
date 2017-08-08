@@ -9,7 +9,7 @@ private:
     int NUM_OF_DIGITS = 10;
     vector<vector<int>> result;
     
-    void helper(vector<bool> used, int start, int terms_left, int target) {
+    void helper(deque<bool> used, int start, int terms_left, int target) {
         if (target < 0 || terms_left < 0) { return; }
         if (target == 0 && terms_left == 0) {
             vector<int> cur;
@@ -30,7 +30,7 @@ private:
     }
 public:
     vector<vector<int>> combinationSum3(int k, int n) {
-        vector<bool> used(NUM_OF_DIGITS, false);
+        deque<bool> used(NUM_OF_DIGITS, false);
         // Trick.
         // Use a start digit.
         helper(used, 1, k, n);

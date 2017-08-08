@@ -12,7 +12,7 @@ using namespace std;
 //private:
 //    int n;
 //    vector<vector<int>> g;
-//    vector<bool> visited;
+//    deque<bool> visited;
 //    vector<int> top_sort_result;
 //    
 //    void create_graph(vector<pair<int, int>>& envelopes) {

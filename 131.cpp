@@ -9,10 +9,10 @@ using namespace std;
 class Solution {
 private:
     vector<vector<string>> result;
-    vector<vector<bool>> dp;
+    vector<deque<bool>> dp;
     void run_is_palindrome_dp(const string &s) {
         int n = (int)s.length();
-        dp.resize(n, vector<bool> (n, false));
+        dp.resize(n, deque<bool> (n, false));
         for (int idx = 0; idx < n; ++idx) {
             dp[idx][idx] = true;
         }

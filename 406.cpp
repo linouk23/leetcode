@@ -13,7 +13,7 @@ public:
     vector<pair<int, int>> reconstructQueue(vector<pair<int, int>> people) {
         auto tmp = people;
         int n = (int)people.size();
-        vector<bool> used(n, false);
+        deque<bool> used(n, false);
         vector<pair<int, int>> result;
         int count, height;
         for (int it = 0; it < n; ++it) {

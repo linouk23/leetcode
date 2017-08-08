@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 private:
     int n, result = 0;
-    void helper(int cur_row, vector<bool> rows, vector<bool> cols, vector<bool> dL, vector<bool> dR) {
+    void helper(int cur_row, deque<bool> rows, deque<bool> cols, deque<bool> dL, deque<bool> dR) {
         if (cur_row == n) {
             ++result;
             return;
@@ -27,9 +27,9 @@ private:
 public:
     int totalNQueens(int n) {
         this->n = n;
-        vector<bool> rows(n, false);
+        deque<bool> rows(n, false);
         auto cols = rows;
-        vector<bool> dL(2 * n, false);
+        deque<bool> dL(2 * n, false);
         auto dR = dL;
         helper(0, rows, cols, dL, dR);
         return result;
