@@ -15,18 +15,18 @@ class Solution {
 public:
     bool is_valid_helper(TreeNode* node, long long min_val, long long max_val) {
         if (node == nullptr) { return true; }
-        if ((long long)node->val > min_val && (long long)node->val < max_val) {
-            return is_valid_helper(node->left, min_val, node->val) &&
-                   is_valid_helper(node->right, node->val, max_val);
-        }
-        return false;
+        bool is_ok = ((long long)node->val > min_val && (long long)node->val < max_val);
+        if (!is_ok) { return false; }
+        bool is_valid_left_tree = is_valid_helper(node->left, min_val, node->val);
+        bool is_valid_right_tree = is_valid_helper(node->right, node->val, max_val);   
+        return is_valid_left_tree && is_valid_right_tree;
     }
     
     bool isValidBST(TreeNode* root) {
         if (root == nullptr) { return true; }
         long long INF = 1e10;
         return is_valid_helper(root->left, -INF, root->val) &&
-        is_valid_helper(root->right, root->val, INF);
+               is_valid_helper(root->right, root->val, INF);
     }
 };
 
