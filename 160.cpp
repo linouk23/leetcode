@@ -29,10 +29,6 @@ public:
             ++lengthB;
         }
         
-        if (curA != curB) {
-            return nullptr;
-        }
-        
         if (lengthA > lengthB) {
             while (lengthA > lengthB) {
                 headA = headA->next;

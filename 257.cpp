@@ -14,26 +14,25 @@ struct TreeNode {
 
 class Solution {
 private:
-    vector<string> answer;
-public:
-    void dfs(TreeNode* node, string path) {
-        if (!node) { return; }
-        if (!node->left && !node->right) {
-            path += to_string(node->val);
-            answer.emplace_back(path);
+    bool isLeaf(TreeNode* node) {
+        if (node == nullptr) { return false; }
+        return !node->left && !node->right;
+    }
+    void preorder(TreeNode* root, string pathSoFar, vector<string> &paths) {
+        if (root == nullptr) { return; }
+        pathSoFar.append("->" + to_string(root->val));
+        if (isLeaf(root)) {
+            paths.emplace_back(pathSoFar.substr(2));
             return;
         }
-        path += to_string(node->val);
-        path += "->";
-        dfs(node->left, path);
-        dfs(node->right, path);
+        preorder(root->left, pathSoFar, paths);
+        preorder(root->right, pathSoFar, paths); 
     }
-
+public:
     vector<string> binaryTreePaths(TreeNode* root) {
-        if (!root) { return answer; }
-        dfs(root, "");
-
-        return answer;
+        vector<string> paths;
+        if (root != nullptr) { preorder(root, "", paths); }
+        return paths;
     }
 };
 
