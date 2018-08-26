@@ -7,14 +7,26 @@ using namespace std;
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int min_price_so_far = INT_MAX;
-        int answer = 0;
+        Result result;
         for (int price : prices) {
-            min_price_so_far = min(min_price_so_far, price);
-            answer = max(answer, price - min_price_so_far);
+            result.updateMinPrice(price);
+            result.tryToSell(price);
         }
-        return answer;
+        return result.maxProfitSoFar;
     }
+private:
+    struct Result {
+        int maxProfitSoFar, minPriceSoFar;
+        Result(): maxProfitSoFar(0), minPriceSoFar(INT_MAX) {};
+        
+        void updateMinPrice(int currentPrice) {
+            minPriceSoFar = min(minPriceSoFar, currentPrice);
+        }
+        
+        void tryToSell(int currentPrice) {
+            maxProfitSoFar = max(maxProfitSoFar, currentPrice - minPriceSoFar);
+        }
+    };
 };
 
 int main() {
