@@ -7,20 +7,22 @@ using namespace std;
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        unordered_map<int, int> hashtable;
-        for (int num : nums1) {
-            hashtable[num] += 1;
+        unordered_map<int, int> numberToCount;
+        for (int number : nums1) {
+            numberToCount[number] += 1;
         }
-
-        vector<int> answer;
-        for (int num : nums2) {
-            if (hashtable.count(num) && hashtable[num]) {
-                hashtable[num] -= 1;
-                answer.emplace_back(num);
+        
+        vector<int> intersection;
+        for (int number : nums2) {
+            if (numberToCount.count(number)) {
+                intersection.emplace_back(number);
+                --numberToCount[number];
+                if (numberToCount[number] == 0) {
+                    numberToCount.erase(number);
+                }
             }
         }
-
-        return answer;
+        return intersection;
     }
 };
 
