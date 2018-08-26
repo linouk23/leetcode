@@ -15,20 +15,25 @@ struct Interval {
 
 class Solution {
 public:
-    vector<Interval> merge(vector<Interval>& ins) {
-        if (ins.empty()) { return {}; }
-        vector<Interval> result;
-        sort(ins.begin(), ins.end(), [](Interval a, Interval b) { return a.start < b.start; });
-        result.push_back(ins[0]);
-        for (const auto &in : ins) {
-            if (result.back().end < in.start) {
-                result.push_back(in);
+    vector<Interval> merge(vector<Interval>& intervals) {
+        sort(intervals.begin(), intervals.end(), [](const Interval &in1, const Interval &in2) {
+            if (in1.start == in2.start) { return in1.end < in2.end; }
+            return in1.start < in2.start;
+        });
+        
+        vector<Interval> mergedIntervals;
+        if (intervals.empty()) { return mergedIntervals; }
+        
+        mergedIntervals.emplace_back(intervals.front());
+        for (const Interval &interval : intervals) {
+            bool shouldCreateNewInterval = mergedIntervals.back().end < interval.start;
+            if (shouldCreateNewInterval) {
+                mergedIntervals.emplace_back(interval);
             } else {
-                result.back().end = max(result.back().end,
-                                        in.end);
+                mergedIntervals.back().end = max(mergedIntervals.back().end, interval.end);
             }
         }
-        return result;
+        return mergedIntervals;
     }
 };
 
